@@ -25,6 +25,8 @@ const activateModal = () => {
     modal.style.backgroundColor = 'rgba(0,0,0,0.4)';
     modalAlert.style.animationName = 'appear';
     modalAlert.style.animationDuration = '1s';
+    modalAlert.style.backgroundRepeat = 'no-repeat';
+    modalAlert.style.backgroundSize = 'cover';
 }
 const closeModal = () => {
     modalAlert.style.animationName = 'disappear';
@@ -47,6 +49,7 @@ container.addEventListener('click', function() {
 
 const getCityWeather = function(input) {
     activateModal();
+    modalAlert.style.backgroundImage = 'url'+'('+`media/default.png`+')';
     fetch(`http://api.openweathermap.org/data/2.5/forecast/daily?q=${input}&units=metric&cnt=7&appid=${API}`)
     .then(response => response.json())
     .then(data => {
@@ -136,7 +139,7 @@ for(let i = 0; i < 6; i++) {
                 break;
             default: weatherIcon[i].src = 'media/01d.png'
         }
-        blur[i].style.backgroundImage = 'url'+'('+`media/${i}.png`+')';
+        cityCards[i].style.backgroundImage = 'url'+'('+`media/${i}.png`+')';
     })
 }
 
@@ -146,9 +149,6 @@ for(let i = 0; i < cityCards.length; i++) {
     cityCards[i].addEventListener('click',() => {
         getCityWeather(cityNamesArray[i]);
         modalAlert.style.backgroundImage = 'url'+'('+`media/${i}.png`+')';
-        modalAlert.style.backgroundRepeat = 'no-repeat';
-        modalAlert.style.backgroundSize = 'cover';
-
     } )
 }
 
