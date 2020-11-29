@@ -163,13 +163,5 @@ for(let i = 0; i < euroCities.length; i++) {
     .then(data =>{
         let temp = data.list[0].temp.day;
         euroCitiesText.innerHTML += `| ${euroCities[i]}: ${temp}° |`;
-        //euroCitiesTextArray.push(`   ${euroCities[i]}: ${temp}   `);
     })
 }
-// console.log(euroCitiesTextArray)
-// let test = euroCitiesTextArray.join(" ");
-// console.log(euroCitiesTextArray.join(" "))
-// euroCitiesText.innerHTML = test;
-
-
-// //"°"
