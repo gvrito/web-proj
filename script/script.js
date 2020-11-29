@@ -19,6 +19,8 @@ let weatherIcon = container.getElementsByClassName('weatherimg');
 let modalCityName = document.getElementsByClassName('cityname')[6];
 let date = container.getElementsByClassName('date');
 let cityNamesArray = ['Tbilisi','Batumi','Kutaisi','Telavi','Mestia','Bakuriani'];
+let euroCities = ['London','Berlin','Manchester','Paris','Baku','Minsk','Prague','Riga','Monaco','Copenhagen','Lisbon','Moscow','Bucharest','Helsinki','Tbilisi','Belgrade','Madrid','Athens','Budapest','Bern','Ankara','Kiev','Rome'];
+let euroCitiesText = document.getElementById('eurocities');
 
 const activateModal = () => {
     modal.style.display = 'flex';
@@ -153,5 +155,21 @@ for(let i = 0; i < cityCards.length; i++) {
 }
 
 
+let euroCitiesTextArray = []
+
+for(let i = 0; i < euroCities.length; i++) {
+    fetch(`http://api.openweathermap.org/data/2.5/forecast/daily?q=${euroCities[i]}&units=metric&cnt=7&appid=${API}`)
+    .then(response => response.json())
+    .then(data =>{
+        let temp = data.list[0].temp.day;
+        euroCitiesText.innerHTML += `| ${euroCities[i]}: ${temp}° |`;
+        //euroCitiesTextArray.push(`   ${euroCities[i]}: ${temp}   `);
+    })
+}
+// console.log(euroCitiesTextArray)
+// let test = euroCitiesTextArray.join(" ");
+// console.log(euroCitiesTextArray.join(" "))
+// euroCitiesText.innerHTML = test;
 
 
+// //"°"
