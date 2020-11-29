@@ -161,7 +161,7 @@ for(let i = 0; i < euroCities.length; i++) {
     fetch(`http://api.openweathermap.org/data/2.5/forecast/daily?q=${euroCities[i]}&units=metric&cnt=7&appid=${API}`)
     .then(response => response.json())
     .then(data =>{
-        let temp = data.list[0].temp.day;
+        let temp = Math.floor(data.list[0].temp.day);
         euroCitiesText.innerHTML += `| ${euroCities[i]}: ${temp}° |`;
     })
 }
