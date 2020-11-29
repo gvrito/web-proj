@@ -145,6 +145,10 @@ closeBtn.addEventListener('click', closeModal)
 for(let i = 0; i < cityCards.length; i++) {
     cityCards[i].addEventListener('click',() => {
         getCityWeather(cityNamesArray[i]);
+        modalAlert.style.backgroundImage = 'url'+'('+`media/${i}.png`+')';
+        modalAlert.style.backgroundRepeat = 'no-repeat';
+        modalAlert.style.backgroundSize = 'cover';
+
     } )
 }
 
