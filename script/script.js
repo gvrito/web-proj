@@ -8,6 +8,7 @@ const searchBtn = document.getElementById('searchBtn');
 const header = document.getElementById('headerJs');
 const container = document.getElementById('containerjs');
 let input = searchBar.value;
+let cityCards = container.getElementsByClassName('city');
 let blur = container.getElementsByClassName('blur');
 let citynames = container.getElementsByClassName('cityname');
 let weather = container.getElementsByClassName('weather');
@@ -18,18 +19,19 @@ let weatherIcon = container.getElementsByClassName('weatherimg');
 let modalCityName = document.getElementsByClassName('cityname')[6];
 let date = container.getElementsByClassName('date');
 let cityNamesArray = ['Tbilisi','Batumi','Kutaisi','Telavi','Mestia','Bakuriani'];
+
 const activateModal = () => {
     modal.style.display = 'flex';
     modal.style.backgroundColor = 'rgba(0,0,0,0.4)';
     modalAlert.style.animationName = 'appear';
-    modalAlert.style.animationDuration = '0.5s';
+    modalAlert.style.animationDuration = '1s';
 }
 const closeModal = () => {
     modalAlert.style.animationName = 'disappear';
-    modalAlert.style.animationDuration = '0.4s';
+    modalAlert.style.animationDuration = '1s';
     setTimeout(function(){
         modal.style.display = 'none';
-    },350);
+    },1000);
 }
 const getMonthName = (number) => {
     const arr = ['January','February','March','April','May','June','July','August','September','October','November','December']
@@ -140,9 +142,11 @@ for(let i = 0; i < 6; i++) {
 
 closeBtn.addEventListener('click', closeModal)
 
-
-
-
+for(let i = 0; i < cityCards.length; i++) {
+    cityCards[i].addEventListener('click',() => {
+        getCityWeather(cityNamesArray[i]);
+    } )
+}
 
 
 

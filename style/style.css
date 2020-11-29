@@ -169,10 +169,33 @@
 
 
 @keyframes appear {
-    from{top: -300px; opacity:0;width: 0%};
-    to {top:0; opacity:1; width: 60%}
+    0% {
+        top: -500px;
+        opacity: 0;
+    }
+    50% {
+        top: -250px;
+        opacity: 0;
+    }
+    75% {
+        top: 500px;
+    }
+    100% {
+        top: 270px;
+        opacity: 1;
+    }
 }
 @keyframes disappear {
-    from{opacity:1;width:60%}
-    to{opacity:0;width:0%}
+    0% {
+        top: 270px;
+    }
+    50% {
+        top: 500px;
+    }
+    75% {
+        top: -250px;
+    }
+    100% {
+        top: -500px;
+    }
 }
