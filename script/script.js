@@ -52,6 +52,33 @@ container.addEventListener('click', function() {
 const getCityWeather = function(input) {
     activateModal();
     modalAlert.style.backgroundImage = 'url'+'('+`media/default.png`+')';
+    let lowerCity = input.toLowerCase();
+    switch(lowerCity) {
+        case 'tbilisi':
+            modalAlert.style.backgroundImage = 'url'+'('+`media/${0}.png`+')'
+            break;
+        case 'batumi':
+            modalAlert.style.backgroundImage = 'url'+'('+`media/${1}.png`+')'
+            break;
+        case 'kutaisi':
+            modalAlert.style.backgroundImage = 'url'+'('+`media/${2}.png`+')'
+            break;
+        case 'telavi':
+            modalAlert.style.backgroundImage = 'url'+'('+`media/${3}.png`+')'
+            break;
+        case 'mestia':
+            modalAlert.style.backgroundImage = 'url'+'('+`media/${4}.png`+')'
+            break;
+        case 'bakuriani':
+            modalAlert.style.backgroundImage = 'url'+'('+`media/${5}.png`+')'
+            break;
+    }
+    fetch(`https://api.teleport.org/api/urban_areas/slug:${lowerCity}/images/`)
+    .then(responsee => responsee.json())
+    .then(data => {
+        photo = data.photos[0].image.web
+        modalAlert.style.backgroundImage = 'url'+'('+`${photo}`+')';
+    })
     fetch(`http://api.openweathermap.org/data/2.5/forecast/daily?q=${input}&units=metric&cnt=7&appid=${API}`)
     .then(response => response.json())
     .then(data => {
@@ -165,3 +192,10 @@ for(let i = 0; i < euroCities.length; i++) {
         euroCitiesText.innerHTML += `| ${euroCities[i]}: ${temp}° |`;
     })
 }
+
+fetch('https://api.teleport.org/api/urban_areas/slug:berlin/images/')
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+    console.log(data.photos[0].image.web)
+})
