@@ -79,7 +79,7 @@ const getCityWeather = function(input) {
         photo = data.photos[0].image.web
         modalAlert.style.backgroundImage = 'url'+'('+`${photo}`+')';
     })
-    fetch(`http://api.openweathermap.org/data/2.5/forecast/daily?q=${input}&units=metric&cnt=7&appid=${API}`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${input}&units=metric&cnt=7&appid=${API}`)
     .then(response => response.json())
     .then(data => {
         console.log(data);
@@ -130,7 +130,7 @@ const getCityWeather = function(input) {
 
 for(let i = 0; i < 6; i++) {
     citynames[i].innerHTML = cityNamesArray[i];
-    fetch(`http://api.openweathermap.org/data/2.5/forecast/daily?q=${cityNamesArray[i]}&units=metric&cnt=7&appid=${API}`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${cityNamesArray[i]}&units=metric&cnt=7&appid=${API}`)
     .then(response => response.json())
     .then(data => {
         console.log(data);
@@ -185,7 +185,7 @@ for(let i = 0; i < cityCards.length; i++) {
 let euroCitiesTextArray = []
 
 for(let i = 0; i < euroCities.length; i++) {
-    fetch(`http://api.openweathermap.org/data/2.5/forecast/daily?q=${euroCities[i]}&units=metric&cnt=7&appid=${API}`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${euroCities[i]}&units=metric&cnt=7&appid=${API}`)
     .then(response => response.json())
     .then(data =>{
         let temp = Math.floor(data.list[0].temp.day);
