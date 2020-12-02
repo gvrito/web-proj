@@ -22,6 +22,22 @@ let cityNamesArray = ['Tbilisi','Batumi','Kutaisi','Telavi','Mestia','Bakuriani'
 let euroCities = ['London','Berlin','Manchester','Paris','Baku','Minsk','Prague','Riga','Monaco','Copenhagen','Lisbon','Moscow','Bucharest','Helsinki','Tbilisi','Belgrade','Madrid','Athens','Budapest','Bern','Ankara','Kiev','Rome'];
 let euroCitiesText = document.getElementById('eurocities');
 
+const upperCaseFirst = (string) => {
+    let preserve = string[0];
+    string = string.slice(1,string.length);
+    preserve = preserve.toUpperCase();
+    preserve += string;
+    return preserve;
+}
+
+const upperCaseFirstAll = (string) => {
+    let strArray = string.split(' ');
+    for(let i = 0; i < strArray.length; i++){
+        strArray[i] = upperCaseFirst(strArray[i])
+    }
+    return strArray.join(' ');
+}
+
 const activateModal = () => {
     modal.style.display = 'flex';
     modal.style.backgroundColor = 'rgba(0,0,0,0.4)';
@@ -89,7 +105,7 @@ const getCityWeather = function(input) {
             let day = new Date(realDate.getFullYear(),realDate.getMonth(),realDate.getDate()+(i-6));
             let displayDate = day.getFullYear() + " " + getMonthName(day.getMonth()) + " " + day.getDate();
             date[i-6].innerHTML = displayDate;
-            weather[i].innerHTML = data.list[i-6].weather[0].description;
+            weather[i].innerHTML = upperCaseFirstAll(data.list[i-6].weather[0].description);
             temperatures[i].innerHTML = Math.floor(data.list[i-6].temp.day) + "°";
             max[i].innerHTML = "Max Temperature: " + Math.floor(data.list[i-6].temp.max) + "°";
             min[i].innerHTML = "Min Temperature: " + Math.floor(data.list[i-6].temp.min) + "°";
@@ -134,7 +150,7 @@ for(let i = 0; i < 6; i++) {
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        weather[i].innerHTML = data.list[0].weather[0].description;
+        weather[i].innerHTML = upperCaseFirstAll(data.list[0].weather[0].description);
         temperatures[i].innerHTML = Math.floor(data.list[0].temp.day) + "°";
         max[i].innerHTML = "Max Temperature: " + Math.floor(data.list[0].temp.max) + "°";
         min[i].innerHTML = "Min Temperature: " + Math.floor(data.list[0].temp.min) + "°";
@@ -192,10 +208,3 @@ for(let i = 0; i < euroCities.length; i++) {
         euroCitiesText.innerHTML += `| ${euroCities[i]}: ${temp}° |`;
     })
 }
-
-fetch('https://api.teleport.org/api/urban_areas/slug:berlin/images/')
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-    console.log(data.photos[0].image.web)
-})
